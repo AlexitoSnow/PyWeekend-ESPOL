@@ -15,11 +15,11 @@ def imprimir_tablero(tablero, casilla_actual=0):
             if i + j < len(tablero):
                 numero = tablero[i + j]
                 if casilla_actual == 30 and numero == 30:
-                    numeros += f'*  \033[1;36m{numero:02d}\033[0m  '  # Colorear en celeste el ganador
+                    numeros += f'*  \033[36m{numero:02d}\033[0m  '  # Colorear en celeste el ganador
                 elif numero == casilla_actual:
-                    numeros += f'*  \033[1;31m{numero:02d}\033[0m  '  # Colorear en rojo la ubicacion actual
+                    numeros += f'*  \033[31m{numero:02d}\033[0m  '  # Colorear en rojo la ubicacion actual
                 elif numero == 30:
-                    numeros += f'*  \033[1;32m{numero:02d}\033[0m  '  # Colorear en verde el objetivo
+                    numeros += f'*  \033[32m{numero:02d}\033[0m  '  # Colorear en verde el objetivo
                 else:
                     numeros += f'*  {numero:02d}  '
             else:
