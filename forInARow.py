@@ -1,4 +1,5 @@
 import numpy as np
+import time
 
 jugador = '🔴'
 computadora = '🟡'
@@ -13,9 +14,8 @@ def crear_tablero():
 
 def imprimir_tablero(tablero):
     print(' 1  2  3  4  5  6  7')
-    for fila in tablero:
-        print(' '.join(fila))
-    
+    for fila in range(filas - 1, -1, -1):
+        print(' '.join(tablero[fila]))
 
 def es_movimiento_valido(tablero, columna):
     return tablero[filas - 1][columna] == vacio
@@ -25,6 +25,7 @@ def realizar_movimiento(tablero, columna, ficha):
         if tablero[fila][columna] == vacio:
             tablero[fila][columna] = ficha
             return True
+        time.sleep(0.25)
     return False
 
 def hay_ganador(tablero, ficha):
@@ -32,7 +33,6 @@ def hay_ganador(tablero, ficha):
         for columna in range(columnas - 3):
             if all(tablero[fila][columna + i] == ficha for i in range(4)):
                 return True
-
     
     for columna in range(columnas):
         for fila in range(filas - 3):
@@ -52,7 +52,7 @@ def hay_ganador(tablero, ficha):
 
     return False
 
-#Lógica para que la computadora intente ganar siempre
+#Lógica para que la computadora gane
 
 def obtener_columna_maquina(tablero):
 
@@ -101,7 +101,9 @@ while True:
             print("¡Felicidades! Ganó")
             break
     else:
-        print("Es el turno de la computadora\n")
+        print("\nEs el turno de la computadora\n")
+        time.sleep(0.5)
+        print("La computadora está viendo que columna es la indicada...\n")
         columna_maquina = obtener_columna_maquina(tablero)
         realizar_movimiento(tablero, columna_maquina, computadora)
 
@@ -111,4 +113,3 @@ while True:
             break
 
     turno = jugador if turno == computadora else computadora
-
